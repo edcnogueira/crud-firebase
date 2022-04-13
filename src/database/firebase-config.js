@@ -11,16 +11,6 @@ import { initializeApp } from "firebase/app";
 //   measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 // };
 
-const firebaseConfig = {
-  apiKey: "",
-  authDomain: "",
-  projectId: "",
-  storageBucket: "",
-  messagingSenderId: "",
-  appId: "",
-  measurementId: "",
-};
-
 const app = initializeApp(firebaseConfig);
 
 export const db = getFirestore(app);
