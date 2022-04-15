@@ -40,25 +40,35 @@ function App() {
 
   return (
     <div className="bg-[#038c73] m-3 p-4 max-w-md mx-auto rounded-xl shadow-md overflow-hidden md:max-w-2xl">
-      <form onSubmit={e => handleSubmit(e)}>
-        <input
-          value={newName}
-          placeholder="Name..."
-          onChange={e => setNewName(e.target.value)}
-        />
-        <input
-          value={newAge}
-          type="number"
-          placeholder="Age..."
-          onChange={e => setNewAge(e.target.value)}
-        />
-
-        <button type="submit"> Create User</button>
-      </form>
-      <div class="mt-4 relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      <div>
+        <form onSubmit={e => handleSubmit(e)}>
+          <input
+            className="block p-2 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            value={newName}
+            placeholder="Name"
+            onChange={e => setNewName(e.target.value)}
+          />
+          <input
+            className="mt-3 block p-2 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            value={newAge}
+            type="number"
+            placeholder="Age"
+            onChange={e => setNewAge(e.target.value)}
+          />
+          <div className="flex aling-center justify-end">
+            <button
+              className="mt-3 text-[#f0f2f2] bg-[#f27405] hover:bg-[#f27405]-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              type="submit"
+            >
+              Create User
+            </button>
+          </div>
+        </form>
+      </div>
+      <div className="mt-4 relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead
-            class="text-xs text-[#f27405] uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400"
+            className="text-xs text-[#f27405] uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400"
             s
           >
             <tr>
@@ -75,15 +85,15 @@ function App() {
           </thead>
           <tbody>
             {users.map(user => (
-              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td
                   scope="row"
-                  class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
+                  className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
                 >
                   {user.name}
                 </td>
-                <td class="px-6 py-4">{user.age}</td>
-                <td class="px-6 py-4 text-right">
+                <td className="px-6 py-4">{user.age}</td>
+                <td className="px-6 py-4 text-right">
                   <button
                     className="text-[#038c73]"
                     onClick={() => updateUser(user.id, user.age)}
