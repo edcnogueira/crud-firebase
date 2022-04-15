@@ -1,20 +1,16 @@
-import { collection, doc, getDocs, updateDoc } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "./database/firebase-config";
-import { createUser, deleteUser } from "./services/index";
+import { createUser, deleteUser, updateUser } from "./services/index";
 
 function App() {
   const [updateList, setUpdateList] = useState(false);
   const [users, setUsers] = useState([]);
   const [newName, setNewName] = useState("");
-  const [newAge, setNewAge] = useState(0);
+  const [newAge, setNewAge] = useState("");
+  const [idUpdate, setIdUpdate] = useState("");
+  const [botaoUpdate, setBotaoUpdate] = useState(false);
   const usersCollectionRef = collection(db, "users");
-
-  const updateUser = async (id, age) => {
-    const userDoc = doc(db, "users", id);
-    const newFields = { age: age + 1 };
-    await updateDoc(userDoc, newFields);
-  };
 
   useEffect(() => {
     const getusers = async () => {
@@ -31,6 +27,21 @@ function App() {
     setUpdateList(!updateList);
     setNewName("");
     setNewAge("");
+  };
+
+  const handleClickUpdate = (id, name, age) => {
+    setIdUpdate(id);
+    setNewName(name);
+    setNewAge(age);
+    setBotaoUpdate(true);
+  };
+
+  const handleUpdate = async () => {
+    await updateUser(idUpdate, newName, newAge);
+    setNewName("");
+    setNewAge("");
+    setUpdateList(!updateList);
+    setBotaoUpdate(false);
   };
 
   const handleDelete = id => {
@@ -56,12 +67,22 @@ function App() {
             onChange={e => setNewAge(e.target.value)}
           />
           <div className="flex aling-center justify-end">
-            <button
-              className="mt-3 text-[#f0f2f2] bg-[#f27405] hover:bg-[#f27405]-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-              type="submit"
-            >
-              Create User
-            </button>
+            {botaoUpdate === true ? (
+              <button
+                className="mt-3 text-[#f0f2f2] bg-[#f27405] hover:bg-[#f27405]-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                type="button"
+                onClick={() => handleUpdate()}
+              >
+                Update User
+              </button>
+            ) : (
+              <button
+                className="mt-3 text-[#f0f2f2] bg-[#f27405] hover:bg-[#f27405]-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                type="submit"
+              >
+                Create User
+              </button>
+            )}
           </div>
         </form>
       </div>
@@ -72,13 +93,13 @@ function App() {
             s
           >
             <tr>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" className="px-6 py-3">
                 Name
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" className="px-6 py-3">
                 Age
               </th>
-              <th scope="col" class="px-6 py-3 text-right">
+              <th scope="col" className="px-6 py-3 text-right">
                 Options
               </th>
             </tr>
@@ -96,7 +117,7 @@ function App() {
                 <td className="px-6 py-4 text-right">
                   <button
                     className="text-[#038c73]"
-                    onClick={() => updateUser(user.id, user.age)}
+                    onClick={() => handleClickUpdate(user.id, user.name, user.age)}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
