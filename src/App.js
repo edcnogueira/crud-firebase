@@ -58,7 +58,7 @@ function App() {
       <div class="mt-4 relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead
-            class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+            class="text-xs text-[#f27405] uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400"
             s
           >
             <tr>
@@ -84,7 +84,10 @@ function App() {
                 </td>
                 <td class="px-6 py-4">{user.age}</td>
                 <td class="px-6 py-4 text-right">
-                  <button onClick={() => updateUser(user.id, user.age)}>
+                  <button
+                    className="text-[#038c73]"
+                    onClick={() => updateUser(user.id, user.age)}
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-6 w-6"
@@ -100,7 +103,7 @@ function App() {
                       />
                     </svg>
                   </button>
-                  <button onClick={() => handleDelete(user.id)}>
+                  <button className="text-red-500" onClick={() => handleDelete(user.id)}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-6 w-6"
