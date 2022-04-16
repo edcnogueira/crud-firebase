@@ -77,7 +77,7 @@ function App() {
               </button>
             ) : (
               <button
-                className="mt-3 text-[#f0f2f2] bg-[#f27405] hover:bg-[#f27405]-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                className="mt-3 text-[#f0f2f2] bg-[#f27405] hover:bg-[#f27405]-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs w-full sm:w-auto px-5 py-2.5 text-center dark:bg-[#f27405]-600 dark:hover:bg-[#f27405]-700 dark:focus:ring-blue-800"
                 type="submit"
               >
                 Create User
